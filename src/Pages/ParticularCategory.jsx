@@ -7,35 +7,25 @@ import LoadingSpinner from "../Common/LoadingSpinner";
 import { useEffect, useState } from "react";
 
 const ParticularCategory = () => {
-  const [cart, setCart] = useState([]);
   const { id } = useParams();
   const { fetchdata, loading, error } = useFetchData(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`, id
   );
 
-  useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
-    }
-  }, [])
-
-  useEffect(() => {
-    console.log(cart)
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart])
-
   const addToCart = (item) => {
-    const existingItem = cart.find((i) => i.idMeal === item.idMeal);
+    const storedCart = localStorage.getItem("cart");
+    let cartArray = storedCart? JSON.parse(storedCart) : [];
+  
+    const existingItem = cartArray.find((i) => i.idMeal === item.idMeal);
     if (existingItem) {
-      setCart(
-        cart.map((i) =>
-          i.idMeal === item.idMeal ? { ...i, count: i.count + 1 } : i
-        )
+      cartArray = cartArray.map((i) =>
+        i.idMeal === item.idMeal? {...i, quantity: i.quantity + 1 } : i
       );
     } else {
-      setCart([...cart, { ...item, count: 1 }]);
+      cartArray = [...cartArray, {...item, quantity: 1 }];
     }
+  
+    localStorage.setItem("cart", JSON.stringify(cartArray));
   };
 
   if (loading) {

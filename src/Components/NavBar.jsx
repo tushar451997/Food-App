@@ -1,12 +1,19 @@
 import React from 'react';
-import { Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 import Home from '../Pages/Home';
 import ParticularCategory from '../Pages/ParticularCategory';
+import CartModal from './CartModal';
 
 const NavBar = () => {
+    const [showCart, setShowCart] = React.useState(false);
+
+    const hideCart = (isFalse) =>{
+        setShowCart(isFalse)
+    }
+
     return (
         <>
             <BrowserRouter>
@@ -28,7 +35,7 @@ const NavBar = () => {
                                     </Form>
                                 </Nav>
                                 <Nav>
-                                    <Nav.Link as={Link} to="/cart" className="nav-link"><FontAwesomeIcon icon={faShoppingCart} /> Cart</Nav.Link>
+                                    <Nav.Link onClick={() => setShowCart(true)} className="nav-link"><FontAwesomeIcon icon={faShoppingCart} /> Cart</Nav.Link>
                                     <Nav.Link as={Link} to="/login" className="nav-link">Login</Nav.Link>
                                 </Nav>
                             </Nav>
@@ -36,13 +43,14 @@ const NavBar = () => {
                     </Container>
                 </Navbar>
 
+             {showCart? <CartModal showCart={showCart} hideCart={hideCart}/>:''}
+
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/breakfast" element={<Breakfast />} />
                     <Route path="/lunch" element={<Lunch />} />
                     <Route path="/dinner" element={<Dinner />} />
                     <Route path="/snacks" element={<Snacks />} />
-                    <Route path="/cart" element={<Cart />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/category/:id" element={<ParticularCategory />} />
                 </Routes>
@@ -69,8 +77,9 @@ const Snacks = () => {
     return <h1>Snacks Page</h1>;
 };
 
-const Cart = () => {
-    return <h1>Cart Page</h1>;
+const CartContent = () => {
+    // add your cart content here
+    return <h1>Cart Content</h1>;
 };
 
 const Login = () => {

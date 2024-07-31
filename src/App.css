@@ -36,3 +36,89 @@
     transform: rotate(360deg);
   }
 }
+
+.cart-modal {
+  transition: transform 0.3s ease-in-out;
+}
+
+.cart-modal.show {
+  transform: translateX(0);
+}
+
+.cart-modal:not(.show) {
+  transform: translateX(100%);
+}
+
+.cart-modal .modal-body {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-modal.modal-dialog.modal-full-width {
+  width: 60%;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  right: -60%; /* hide the modal initially */
+}
+
+.cart-modal .modal-dialog {
+  margin: 0 !important;
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  transform: translateX(100%) !important;
+  transition: transform 0.3s ease-in-out !important;
+  width: 160% !important; /* add this rule */
+  height: 100% !important; /* add this rule */
+  max-width: 160% !important; /* adjust this value to your desired width */
+  max-height: 100vh !important; /* adjust this value to your desired height */
+  overflow-y: hidden !important; /* add this rule to hide vertical scrollbar */
+}
+
+.cart-modal.show .modal-dialog {
+  transform: translateX(0) !important;
+}
+
+.cart-modal.show .modal-dialog.modal-full-width {
+  transform: translateX(-100%);
+}
+
+.cart-modal {
+  transition: none;
+}
+
+.cart-modal.modal-dialog.modal-full-width {
+  width: 60%;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.cart-modal .modal-dialog {
+  margin: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.cart-modal.show .modal-dialog {
+  transform: translateX(0);
+}
+
+.cart-modal.modal-content {
+  width: 100%!important;
+  height: 100vh!important;
+  overflow-y: auto!important;
+}
