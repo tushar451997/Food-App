@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Modal, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Modal, Button, Offcanvas } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
@@ -10,40 +10,35 @@ import CartModal from './CartModal';
 const NavBar = () => {
     const [showCart, setShowCart] = React.useState(false);
 
-    const hideCart = (isFalse) =>{
+    const hideCart = (isFalse) => {
         setShowCart(isFalse)
     }
 
     return (
         <>
             <BrowserRouter>
-                <Navbar bg="light" expand="lg">
-                    <Container>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-auto" />
-                        <Navbar.Brand as={Link} to="/">Food Booking App</Navbar.Brand>
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="justify-content-between w-100">
-                                <Nav className="mr-auto">
-                                    <NavDropdown title="Meals" id="basic-nav-dropdown">
-                                        <NavDropdown.Item as={Link} to="/breakfast">Breakfast</NavDropdown.Item>
-                                        <NavDropdown.Item as={Link} to="/lunch">Lunch</NavDropdown.Item>
-                                        <NavDropdown.Item as={Link} to="/dinner">Dinner</NavDropdown.Item>
-                                        <NavDropdown.Item as={Link} to="/snacks">Snacks</NavDropdown.Item>
-                                    </NavDropdown>
-                                    <Form inline className="ml-3">
-                                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                                    </Form>
+                <Navbar bg="primary" expand="lg" >
+                    <Container >
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-auto" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" />
+                        <Navbar.Brand as={Link} to="/" className="text-white">Food Booking App</Navbar.Brand>
+                        <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="start">
+                            <Offcanvas.Header closeButton>
+                                <Offcanvas.Title id="offcanvasNavbarLabel" className="text-white">Food Booking App</Offcanvas.Title>
+                            </Offcanvas.Header>
+                            <Offcanvas.Body>
+                                <Nav className="justify-content-between w-100">
+                                    <Nav className="mr-auto">
+                                        <Nav.Link as={Link} to="/search" className="nav-link text-white">Search</Nav.Link>
+                                        <Nav.Link as={Link} to="/login" className="nav-link text-white">Login</Nav.Link>
+                                        <Nav.Link onClick={() => setShowCart(true)} className="nav-link text-white"><FontAwesomeIcon icon={faShoppingCart} /> Cart</Nav.Link>
+                                    </Nav>
                                 </Nav>
-                                <Nav>
-                                    <Nav.Link onClick={() => setShowCart(true)} className="nav-link"><FontAwesomeIcon icon={faShoppingCart} /> Cart</Nav.Link>
-                                    <Nav.Link as={Link} to="/login" className="nav-link">Login</Nav.Link>
-                                </Nav>
-                            </Nav>
-                        </Navbar.Collapse>
+                            </Offcanvas.Body>
+                        </Navbar.Offcanvas>
                     </Container>
                 </Navbar>
 
-             {showCart? <CartModal showCart={showCart} hideCart={hideCart}/>:''}
+                {showCart ? <CartModal showCart={showCart} hideCart={hideCart} /> : ''}
 
                 <Routes>
                     <Route path="/" element={<Home />} />

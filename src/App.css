@@ -84,6 +84,40 @@
   overflow-y: hidden !important; /* add this rule to hide vertical scrollbar */
 }
 
+@media screen and (max-width:940px) {
+  .cart-modal .modal-dialog {
+
+    width: 200% !important; /* add this rule */
+    max-width: 200% !important; /* adjust this value to your desired width */
+
+  }
+}
+@media screen and (max-width:760px) {
+  .cart-modal .modal-dialog {
+
+    width: 300% !important; /* add this rule */
+    max-width: 300% !important; /* adjust this value to your desired width */
+
+  }
+}
+@media screen and (max-width:508px) {
+  .cart-modal .modal-dialog {
+
+    width: 400% !important; /* add this rule */
+    max-width: 400% !important; /* adjust this value to your desired width */
+
+  }
+}
+
+@media screen and (max-width:380px) {
+  .cart-modal .modal-dialog {
+
+    width: 430% !important; /* add this rule */
+    max-width: 450% !important; /* adjust this value to your desired width */
+
+  }
+}
+
 .cart-modal.show .modal-dialog {
   transform: translateX(0) !important;
 }
