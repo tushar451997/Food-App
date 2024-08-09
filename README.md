@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+Food Store
+It's an E-commerce food web application with all the major functionalities
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Reactjs JavaScript restAPI Bootstrap React-bootstrap
 
-## Available Scripts
+Live Link: https://dancing-begonia-29f160.netlify.app/
+![image](https://github.com/user-attachments/assets/843e8535-4f18-4f5e-9792-b12d231f8c44) ![image](https://github.com/user-attachments/assets/987279cb-e589-43db-9c91-1dd4a8f0c4b4)
+![image](https://github.com/user-attachments/assets/f15fe989-6cf1-492d-88a7-01dac568ab31) ![image](https://github.com/user-attachments/assets/b353a0cf-dc2c-4fdc-8a7a-b553e90c1358)
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Food-Store is an e-commerce food web application that allows you to food online. It has a variety of categories, just visit the food listing page, trending food page or search page and you will see all the food available, apply sorting as per your need and in just a few clicks you can order food from the website.
 
-### `npm run build`
+Pages ( All pages are responsive)
+Homepage (With all food category)
+Food Listing Page with Sorting Filters
+Searh Page with Debounce
+Cart page with where we can add more than one quntity of same food with total price & also see count on cart icon how much food added & Shipping Address
+Login / Logout
+Signup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🚀 Features
+Login/Signup User Account
+On Home page we can see all category
+When click on category we can see all foods of that category
+Food Sorting Based on Price & Ratings
+Food Search according to the name with Debounce
+Cart Add/Remove Items
+Address Management
+For login i have use local storage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
