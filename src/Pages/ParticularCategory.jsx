@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import useFetchData from "../Common/useFetchData";
 import LoadingSpinner from "../Common/LoadingSpinner";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../contexts/CartContext";
 
 const ParticularCategory = () => {
+  const { cart, updateCartQuantity } = useContext(CartContext);
   const { id } = useParams();
   const { fetchdata, loading, error } = useFetchData(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`, id
@@ -58,8 +60,9 @@ const ParticularCategory = () => {
     } else {
       cartArray = [...cartArray, { ...item, quantity: 1 }];
     }
-
+    updateCartQuantity(cartArray?.length)
     localStorage.setItem("cart", JSON.stringify(cartArray));
+    alert('Item added to cart')
   };
 
   if (loading) {
@@ -116,34 +119,34 @@ const ParticularCategory = () => {
       </Row>
       <Row className="gutters-sm px-5">
         {filteredData?.length > 0 && filteredData.map((item, index) => (
-                    <Col key={index} xs={12} md={4} lg={3} className="mb-3 mt-3">
-                    <Card>
-                      <Card.Img src={item.strMealThumb} alt={item.strMeal} />
-                      <Card.Body>
-                        <Card.Title className="text-truncate text-center">{item.strMeal}</Card.Title>
-                        <Row>
-                          <Col>
-                            <Card.Text>Rating:
-                              <FontAwesomeIcon icon={faStar} style={{ color: 'green' }} /> {item.rating}
-                            </Card.Text>
-                          </Col>
-                          <Col>
-                            <Card.Text >
-                              Price:<span style={{ color: 'red' }}>${item.price}</span>
-                            </Card.Text>
-                          </Col>
-                        </Row>
-                        <br />
-                        <div className="text-center hover:bg-blue hover:text-white">
-                          <Button onClick={() => addToCart(item)}>Add to Cart</Button>
-                        </div>
-                      </Card.Body>
-                    </Card>
+          <Col key={index} xs={12} md={4} lg={3} className="mb-3 mt-3">
+            <Card>
+              <Card.Img src={item.strMealThumb} alt={item.strMeal} />
+              <Card.Body>
+                <Card.Title className="text-truncate text-center">{item.strMeal}</Card.Title>
+                <Row>
+                  <Col>
+                    <Card.Text>Rating:
+                      <FontAwesomeIcon icon={faStar} style={{ color: 'green' }} /> {item.rating}
+                    </Card.Text>
                   </Col>
-                ))}
-              </Row>
-            </Container>
-          )
-        }
-        
-        export default ParticularCategory;
+                  <Col>
+                    <Card.Text >
+                      Price:<span style={{ color: 'red' }}>${item.price}</span>
+                    </Card.Text>
+                  </Col>
+                </Row>
+                <br />
+                <div className="text-center hover:bg-blue hover:text-white">
+                  <Button onClick={() => addToCart(item)}>Add to Cart</Button>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
+  )
+}
+
+export default ParticularCategory;

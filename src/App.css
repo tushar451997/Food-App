@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -67,7 +68,8 @@
   margin: 0;
   position: fixed;
   top: 0;
-  right: -60%; /* hide the modal initially */
+  right: -60%;
+  /* hide the modal initially */
 }
 
 .cart-modal .modal-dialog {
@@ -77,34 +79,47 @@
   right: 0 !important;
   transform: translateX(100%) !important;
   transition: transform 0.3s ease-in-out !important;
-  width: 160% !important; /* add this rule */
-  height: 100% !important; /* add this rule */
-  max-width: 160% !important; /* adjust this value to your desired width */
-  max-height: 100vh !important; /* adjust this value to your desired height */
-  overflow-y: hidden !important; /* add this rule to hide vertical scrollbar */
+  width: 160% !important;
+  /* add this rule */
+  height: 100% !important;
+  /* add this rule */
+  max-width: 160% !important;
+  /* adjust this value to your desired width */
+  max-height: 100vh !important;
+  /* adjust this value to your desired height */
+  overflow-y: hidden !important;
+  /* add this rule to hide vertical scrollbar */
 }
 
 @media screen and (max-width:940px) {
   .cart-modal .modal-dialog {
 
-    width: 200% !important; /* add this rule */
-    max-width: 200% !important; /* adjust this value to your desired width */
+    width: 200% !important;
+    /* add this rule */
+    max-width: 200% !important;
+    /* adjust this value to your desired width */
 
   }
 }
+
 @media screen and (max-width:760px) {
   .cart-modal .modal-dialog {
 
-    width: 300% !important; /* add this rule */
-    max-width: 300% !important; /* adjust this value to your desired width */
+    width: 300% !important;
+    /* add this rule */
+    max-width: 300% !important;
+    /* adjust this value to your desired width */
 
   }
 }
+
 @media screen and (max-width:508px) {
   .cart-modal .modal-dialog {
 
-    width: 400% !important; /* add this rule */
-    max-width: 400% !important; /* adjust this value to your desired width */
+    width: 400% !important;
+    /* add this rule */
+    max-width: 400% !important;
+    /* adjust this value to your desired width */
 
   }
 }
@@ -112,8 +127,10 @@
 @media screen and (max-width:380px) {
   .cart-modal .modal-dialog {
 
-    width: 430% !important; /* add this rule */
-    max-width: 450% !important; /* adjust this value to your desired width */
+    width: 430% !important;
+    /* add this rule */
+    max-width: 450% !important;
+    /* adjust this value to your desired width */
 
   }
 }
@@ -152,7 +169,15 @@
 }
 
 .cart-modal.modal-content {
-  width: 100%!important;
-  height: 100vh!important;
-  overflow-y: auto!important;
+  width: 100% !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+}
+
+.offcanvas-backdrop.show {
+  opacity: 1;
+}
+
+.offcanvas-backdrop:not(.show) {
+  opacity: 0;
 }

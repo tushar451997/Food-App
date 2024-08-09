@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { CardBody, CardHeader, Form, FormControl, FormGroup, FormLabel, ListGroup, ListGroupItem, Modal } from "react-bootstrap"
 import { Card, Button, Container, Row, Col } from "react-bootstrap"
+import { CartContext } from '../contexts/CartContext';
+
 const storedCart = localStorage.getItem("cart");
 let data = storedCart ? JSON.parse(storedCart) : [];
 
@@ -9,9 +11,9 @@ const calculateTotalPrice = (price, quantity) => {
 }
 
 const CartModal = ({ showCart, hideCart }) => {
+    const { cart, updateCartQuantity } = useContext(CartContext);
     const [totalPrice, setTotalPrice] = useState(data.reduce((total, item) => total + calculateTotalPrice(item.price, item.quantity), 0));
     const [dataState, setData] = useState(data);
-    console.log(data)
     const setShowCart = () => {
         hideCart(false)
     }
@@ -29,14 +31,16 @@ const CartModal = ({ showCart, hideCart }) => {
                     newData.splice(index, 1);
                 }
                 setData(newData);
+                localStorage.setItem("cart", JSON.stringify(newData));
+                updateCartQuantity(newData?.length)
                 setTotalPrice(newData.reduce((total, item) => total + calculateTotalPrice(item.price, item.quantity), 0));
             }
         }
     }
 
- 
 
-    const handleSubmit = (e) =>{
+
+    const handleSubmit = (e) => {
         e.preventDefault()
     }
 
@@ -67,9 +71,9 @@ const CartModal = ({ showCart, hideCart }) => {
                                         <Row >
                                             <Col className="d-flex justify-content-between mx-2 fw-bold">
                                                 <Button variant="secondary" onClick={() => handleCountChange(item.idMeal, -1)}>-</Button>
-                                           
+
                                                 <Card.Text>{item.quantity}</Card.Text>
-                                           
+
                                                 <Button variant="secondary" onClick={() => handleCountChange(item.idMeal, 1)}>+</Button>
                                             </Col>
                                         </Row>
