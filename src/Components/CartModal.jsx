@@ -3,17 +3,14 @@ import { CardBody, CardHeader, Form, FormControl, FormGroup, FormLabel, ListGrou
 import { Card, Button, Container, Row, Col } from "react-bootstrap"
 import { CartContext } from '../contexts/CartContext';
 
-const storedCart = localStorage.getItem("cart");
-let data = storedCart ? JSON.parse(storedCart) : [];
 
 const calculateTotalPrice = (price, quantity) => {
     return parseFloat(price) * quantity;
 }
 
 const CartModal = ({ showCart, hideCart }) => {
-    const { cart, updateCartQuantity } = useContext(CartContext);
-    const [totalPrice, setTotalPrice] = useState(data.reduce((total, item) => total + calculateTotalPrice(item.price, item.quantity), 0));
-    const [dataState, setData] = useState(data);
+    const { cart, updateCartQuantity, cartdata, updateCartData } = useContext(CartContext);
+    const [totalPrice, setTotalPrice] = useState(cartdata.reduce((total, item) => total + calculateTotalPrice(item.price, item.quantity), 0));
     const setShowCart = () => {
         hideCart(false)
     }
@@ -21,7 +18,7 @@ const CartModal = ({ showCart, hideCart }) => {
 
 
     const handleCountChange = (idMeal, delta) => {
-        const newData = [...dataState];
+        const newData = [...cartdata];
         const index = newData.findIndex(item => item.idMeal === idMeal);
         if (index !== -1) {
             const item = newData[index];
@@ -30,9 +27,9 @@ const CartModal = ({ showCart, hideCart }) => {
                 if (item.quantity === 0) {
                     newData.splice(index, 1);
                 }
-                setData(newData);
                 localStorage.setItem("cart", JSON.stringify(newData));
                 updateCartQuantity(newData?.length)
+                updateCartData(newData)
                 setTotalPrice(newData.reduce((total, item) => total + calculateTotalPrice(item.price, item.quantity), 0));
             }
         }
@@ -59,7 +56,7 @@ const CartModal = ({ showCart, hideCart }) => {
                 </Modal.Header>
 
                 <Container className='mt-3'>
-                    {dataState.map((item, index) => (
+                    {cartdata?.map((item, index) => (
                         <Card key={index} style={{ border: '1px solid #ddd', boxShadow: '0 0 10px rgba(0,0,0,0.1)', display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
                             <Card.Body style={{ flex: 1, padding: '1rem' }}>
                                 <Row>
@@ -98,7 +95,7 @@ const CartModal = ({ showCart, hideCart }) => {
                             <span > Food Cost:</span> ₹{totalPrice.toFixed(2)}
                         </ListGroupItem>
                         <ListGroupItem className="d-flex justify-content-between">
-                            <span> Food Items:</span> {data?.length ? data.length : 0}
+                            <span> Food Items:</span> {cartdata?.length ? cartdata.length : 0}
                         </ListGroupItem>
                         <ListGroupItem className="d-flex justify-content-between">
                             <span> Shipping charge:</span> ₹50

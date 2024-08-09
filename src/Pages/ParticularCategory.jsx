@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 
 const ParticularCategory = () => {
-  const { cart, updateCartQuantity } = useContext(CartContext);
+  const { cart, updateCartQuantity, cartdata, updateCartData } = useContext(CartContext);
   const { id } = useParams();
   const { fetchdata, loading, error } = useFetchData(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`, id
@@ -61,6 +61,7 @@ const ParticularCategory = () => {
       cartArray = [...cartArray, { ...item, quantity: 1 }];
     }
     updateCartQuantity(cartArray?.length)
+    updateCartData(cartArray)
     localStorage.setItem("cart", JSON.stringify(cartArray));
     alert('Item added to cart')
   };

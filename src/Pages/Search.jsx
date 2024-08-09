@@ -7,7 +7,7 @@ import { CartContext } from '../contexts/CartContext';
 import search from '../Images/search.jpg'
 
 const Search = () => {
-    const { cart, updateCartQuantity } = useContext(CartContext);
+    const { cart, updateCartQuantity, cartdata, updateCartData } = useContext(CartContext);
     const { fetchdata, loading, error, setParam } = useFetchData(
         "https://www.themealdb.com/api/json/v1/1/categories.php"
     );
@@ -72,6 +72,7 @@ const Search = () => {
             cartArray = [...cartArray, { ...item, quantity: 1 }];
         }
         updateCartQuantity(cartArray?.length)
+        updateCartData(cartArray)
         localStorage.setItem("cart", JSON.stringify(cartArray));
         alert('Item added to cart')
     };
@@ -143,7 +144,7 @@ const Search = () => {
                     </Row>
                 )}
                 {
-                    filteredResults.length === 0 &&
+                    filteredResults?.length === 0 &&
 
                     <div style={{ textAlign: 'center', borderRadius: '50%' }}>
                         <img src={search} alt='Search' width={400} height={400} style={{ borderRadius: '50%' }} />
