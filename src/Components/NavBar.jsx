@@ -51,7 +51,7 @@ const NavBar = () => {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-auto" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" />
                         <Navbar.Brand as={Link} to="/" className="text-white">Food Booking App</Navbar.Brand>
                         <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="start" className="bg-black backdrop-none" onHide={handleHide}>
-                            <Offcanvas.Header closeButton>
+                            <Offcanvas.Header closeButton closeVariant="white">
                                 <Offcanvas.Title id="offcanvasNavbarLabel" className="text-white">Food Booking App</Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body>
